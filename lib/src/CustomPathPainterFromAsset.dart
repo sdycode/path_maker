@@ -23,7 +23,7 @@ class CustomPathPainterFromAsset extends StatefulWidget {
       required this.filePath,
       required this.size,
       this.child,
-      this.bgColor});
+      this.bgColor = Colors.transparent});
 
   @override
   State<CustomPathPainterFromAsset> createState() =>
@@ -134,40 +134,36 @@ class _CustomPathPainterFromAssetState
   @override
   Widget build(BuildContext context) {
     log("lenggg ${_pathModels.length}");
-    return AspectRatio(
-      aspectRatio: 1.8,
-      child: Container(
-        width: widget.size.width,
-        height: widget.size.height,
-        // color: widget.bgColor,
-        color: Colors.purple.shade100,
-        child: errorMessage.isEmpty && _pathModels.isNotEmpty
-            ? Stack(
-                children: [
-                  // for(PathModel pathModel in _pathModels) _DemoPainter(pathNo, box, pathModel: pathModel)
-                  ...List.generate(
-                    _pathModels.length,
-                    (index) => Container(
-                      width: double.infinity,
-                      height: double.infinity,
-                      // color: Colors.yellow.shade100.withAlpha(150),
-                      child: CustomPaint(
-                          painter: SingleCustomPathPainter(
-                              index,
-                              pathModel: _pathModels[index],
-                              getBoxForPoints(_pathModels[index]
-                                  .points
-                                  .map((e) => e.point)
-                                  .toList()),
-                              paintSize: paintSize)),
-                    ),
-                  )
-                ],
-              )
-            : Center(
-                child: Text(errorMessage),
-              ),
-      ),
+    return Container(
+      width: widget.size.width,
+      height: widget.size.height,
+      color: widget.bgColor,
+      child: errorMessage.isEmpty && _pathModels.isNotEmpty
+          ? Stack(
+              children: [
+                // for(PathModel pathModel in _pathModels) _DemoPainter(pathNo, box, pathModel: pathModel)
+                ...List.generate(
+                  _pathModels.length,
+                  (index) => Container(
+                    width: double.infinity,
+                    height: double.infinity,
+                    // color: Colors.yellow.shade100.withAlpha(150),
+                    child: CustomPaint(
+                        painter: SingleCustomPathPainter(
+                            index,
+                            pathModel: _pathModels[index],
+                            getBoxForPoints(_pathModels[index]
+                                .points
+                                .map((e) => e.point)
+                                .toList()),
+                            paintSize: paintSize)),
+                  ),
+                )
+              ],
+            )
+          : Center(
+              child: Text(errorMessage),
+            ),
     );
   }
 }

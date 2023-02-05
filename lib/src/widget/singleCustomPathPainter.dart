@@ -32,7 +32,7 @@ class SingleCustomPathPainter extends CustomPainter {
       ..color = ui.Color(int.parse("0xff${pathModel.hexColorString}"))
       ..style = pathModel.stroke ? PaintingStyle.stroke : PaintingStyle.fill;
     Path path = Path();
-    log("pointslen in paint $pathNo :  ${pathModel.points.length}");
+    // log("pointslen in paint $pathNo :  ${pathModel.points.length}");
     if (pathModel.points.length < 2) {
       return;
     }
@@ -166,21 +166,15 @@ class SingleCustomPathPainter extends CustomPainter {
     //   offset: pathModels[i].offsetFromOrigin,
     canvas.translate(
         pathModel.offsetFromOrigin.dx, pathModel.offsetFromOrigin.dy);
-    double widthFactor = paintSize.width / s.width;
-    double heightFactor = paintSize.height / s.height;
-    canvas.scale(0.8, heightFactor);
+    double widthFactor =  s.width/paintSize.width ;
+    double heightFactor = s.height/ paintSize.height ;
+    canvas.scale(widthFactor, heightFactor);
     canvas.drawPath(path, paint);
 
     //  canvas.scale(100,200);
-    log("sizeincanvas $widthFactor /  $s : ${pathModel.size}");
+   
 
-    // canvas.drawPath(
-    // Path()
-    //   ..moveTo(50, 50)
-    //   ..lineTo(200, 50)
-    //   ..lineTo(200, 250)
-    //   ..close(),
-    // paint);
+   
   }
 
   @override

@@ -1,6 +1,6 @@
 name: path_maker
-description: A new Flutter package project.
-version: 0.0.1
+description: Custom Clipper Widget Package
+version: 0.0.2
 homepage: https://github.com/sdycode/path_maker.git
 
 environment:
